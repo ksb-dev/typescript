@@ -3,6 +3,7 @@ let age = 20;
 if (age < 50) {
     age += 10;
 }
+// tsc --int (configuring typescript compiler)
 //console.log(age)
 // --> BUILT-IN-TYPES IN TYPESCRIPT
 // (includes javascript types also because typescript is built on top of javascript or you can say typescript is superset of javascript)
@@ -20,7 +21,7 @@ let sales = 123456789;
 //sales = 'e' // type error
 let course = 'Typescript';
 let is_published = true;
-// ------------------------------
+// ----------------------------------------------------------------
 // --> THE ANY TYPE
 let level;
 level = 1;
@@ -33,19 +34,22 @@ level = 'Kedar';
 function render(document) {
     console.log(document);
 }
-// ------------------------------
+// ----------------------------------------------------------------
 // --> ARRAYS
 //Note : when you assign empty array to a variable you must mention it's type otherwise compiler will think is is of type "any"
 let array = [];
 let numberArray = [1, 2, 3]; // type error
-numberArray.forEach(n => console.log(n.toString()));
-// ------------------------------
+numberArray.forEach(n => {
+    return n;
+    //console.log(n.toString())
+});
+// ----------------------------------------------------------------
 // --> TUPLES
 // A tuple is a typed array with a pre-defined length and types for each index.
 let user = [5, 'Kedar'];
 //user.push(1) // Here compiler doesn't complain (should be solved in near future)
 // Note: recommended to restrict length of tuple to 2
-// ------------------------------
+// ----------------------------------------------------------------
 // --> ENUMS
 var Height;
 (function (Height) {
@@ -56,7 +60,7 @@ var Height;
 let myHeight = Height.Medium;
 let mySize = 2 /* Size.Medium */;
 //console.log(mySize)
-// ------------------------------
+// ----------------------------------------------------------------
 // --> FUNCTIONS
 function calculateTax1(income, taxYear) {
     //let x
@@ -64,6 +68,8 @@ function calculateTax1(income, taxYear) {
         return income * 1.2;
     return income * 1.3;
 }
+//calculateTax1('a', 2022)
+//calculateTax1(10_000)
 calculateTax1(10000, 2022);
 function calculateTax2(income, taxYear) {
     //let x
@@ -85,7 +91,7 @@ calculateTax3(10000, 2020); // This "2020" will override default taxYear value "
 "noImplicitReturns": true
 "noUnusedLocals": true
 */
-// ------------------------------
+// ----------------------------------------------------------------
 // --> Objects
 let employee1 = { id: 1 };
 // If you don't specify name make it optional but that is not recommended
@@ -109,7 +115,7 @@ let employee5 = {
         console.log(date);
     }
 };
-// ------------------------------
+// ----------------------------------------------------------------
 // --> UNION TYPES
 function kgToLbs(weight) {
     // Narrowing
@@ -118,6 +124,28 @@ function kgToLbs(weight) {
     else
         return parseInt(weight) * 2.2;
 }
-kgToLbs(54);
-kgToLbs('54');
+let textBox = {
+    drag: () => { },
+    resize: () => { }
+};
+let quantity = 100;
+function getCustomer(id) {
+    return id === 0 ? null : { birthday: new Date() };
+}
+let customer = getCustomer(1);
+//console.log(customer?.birthday.getFullYear()) // Error
+//console.log(customer?.birthday?.getFullYear())
+//optional element access operator
+//customer?.[0]
+// optional call
+let log = null;
+log === null || log === void 0 ? void 0 : log('a');
+// ----------------------------------------------------------------
+// --> NULLISH COAELSCING OPERATOR
+let speed = null;
+let ride = {
+    // Falsy(null, undefined, false, '', 0)
+    //speed:speed || 30 // if you pass falsy values, it is ignored and speed value becomes 30
+    speed: speed !== null && speed !== void 0 ? speed : 30 // here if your value not null or undefined that value will be assigned
+};
 //# sourceMappingURL=index.js.map

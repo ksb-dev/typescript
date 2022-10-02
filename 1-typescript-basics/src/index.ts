@@ -1,3 +1,5 @@
+// npm i -g typescript
+
 let age: number = 20
 
 if (age < 50) {
@@ -294,3 +296,61 @@ let ride = {
 // ----------------------------------------------------------------
 
 // --> TYPE ASSERTIONS
+
+//let phone = document.getElementById('phone') as HTMLInputElement
+
+// OR
+
+let phone = <HTMLInputElement>document.getElementById('phone')
+
+phone.value
+
+// ----------------------------------------------------------------
+
+// --> THE UNKNOWN TYPE
+
+// function unknown(document: any) {
+//   document.move()
+//   document.fly()
+//   document.whatevetWeWant()
+// }
+
+// Here we get error, because of type 'unknown'
+
+// function unknown (document: unknown) {
+//   document.move()
+//   document.fly()
+//   document.whatevetWeWant()
+// }
+
+// ----------------------------------------------------------------
+
+// --> THE NEVER TYPE
+
+// function processEvents () {
+//   while (true) {
+//     // Read message from queue
+//   }
+// }
+
+// processEvents()
+// console.log('Never Reachable Code')
+
+// make "allowUnreachableCode": false
+// function processEvents (): never {
+//   while (true) {
+//     // Read message from queue
+//   }
+// }
+
+// processEvents()
+// console.log('Never Reachable Code')
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// OBJECT ORIENTED PROGRAMMING
+
+// --> CREATING CLASSES

@@ -148,4 +148,40 @@ let ride = {
     //speed:speed || 30 // if you pass falsy values, it is ignored and speed value becomes 30
     speed: speed !== null && speed !== void 0 ? speed : 30 // here if your value not null or undefined that value will be assigned
 };
+// ----------------------------------------------------------------
+// --> TYPE ASSERTIONS
+//let phone = document.getElementById('phone') as HTMLInputElement
+// OR
+let phone = document.getElementById('phone');
+phone.value;
+// ----------------------------------------------------------------
+// --> THE UNKNOWN TYPE
+// function unknown(document: any) {
+//   document.move()
+//   document.fly()
+//   document.whatevetWeWant()
+// }
+// Here we get error, because of type 'unknown'
+// function unknown (document: unknown) {
+//   document.move()
+//   document.fly()
+//   document.whatevetWeWant()
+// }
+// ----------------------------------------------------------------
+// --> THE NEVER TYPE
+// function processEvents () {
+//   while (true) {
+//     // Read message from queue
+//   }
+// }
+// processEvents()
+// console.log('Never Reachable Code')
+// make "allowUnreachableCode": false
+// function processEvents (): never {
+//   while (true) {
+//     // Read message from queue
+//   }
+// }
+// processEvents()
+// console.log('Never Reachable Code')
 //# sourceMappingURL=index.js.map

@@ -266,7 +266,7 @@
 // }
 
 //class Teacher extends Person {
-    // if you uncomment ""noImplicitOverride": true" below you'll get error (below code is not recommended)
+// if you uncomment ""noImplicitOverride": true" below you'll get error (below code is not recommended)
 //   get fullName (): string {
 //     return 'Professor ' + super.fullName
 //   }
@@ -286,48 +286,259 @@
 // 10. POLYMORPHISM
 // -------------------------------------------------
 
-class Person {
-  constructor (public firstName: string, public lastName: string) {}
+// class Person {
+//   constructor (public firstName: string, public lastName: string) {}
 
-  get fullName (): string {
-    return this.firstName + ' ' + this.lastName
-  }
+//   get fullName (): string {
+//     return this.firstName + ' ' + this.lastName
+//   }
 
-  walk () {
-    console.log('Walking')
-  }
+//   walk () {
+//     console.log('Walking')
+//   }
+// }
+
+// class Student extends Person {
+//   constructor (public studentId: number, firstName: string, lastName: string) {
+//     super(firstName, lastName)
+//   }
+
+//   takeTest () {
+//     console.log('Taking a test')
+//   }
+// }
+
+// class Teacher extends Person {
+//   override get fullName (): string {
+//     return 'Professor ' + super.fullName
+//   }
+// }
+
+// class Principal extends Person {
+//   override get fullName (): string {
+//     return 'Principal ' + super.fullName
+//   }
+// }
+
+// printNames([
+//   new Student(1, 'Kedar', 'Babaleshwar'),
+//   new Teacher('John', 'Smith'),
+//   new Principal('James', 'Bond')
+// ])
+
+// function printNames(people: Person[]) {
+//   for(let person of people) {
+//     console.log(person.fullName)
+//   }
+// }
+
+// -------------------------------------------------
+// 11. PRIVATE VS PROTECTED
+// -------------------------------------------------
+
+// class Person {
+//   constructor (public firstName: string, public lastName: string) {}
+
+//   get fullName (): string {
+//     return this.firstName + ' ' + this.lastName
+//   }
+
+//   private walk () {
+//     console.log('Walking')
+//   }
+
+//   protected run () {
+//     console.log('Running')
+//   }
+// }
+
+// class Student extends Person {
+//   constructor (public studentId: number, firstName: string, lastName: string) {
+//     super(firstName, lastName)
+//   }
+
+//   takeTest () {
+//     // this.walk() // private members are not inherited
+//     this.run() // protected members can be inherited
+//     console.log('Taking a test')
+//   }
+// }
+
+// class Teacher extends Person {
+//   override get fullName (): string {
+//     return 'Professor ' + super.fullName
+//   }
+// }
+
+// class Principal extends Person {
+//   override get fullName (): string {
+//     return 'Principal ' + super.fullName
+//   }
+// }
+
+// -------------------------------------------------
+// 12. ABSTRACT CLASSES AND METHODS
+// -------------------------------------------------
+
+// abstract class Shape {
+//   constructor (public color: string) {}
+
+//   abstract render (): void
+// }
+
+// class Circle extends Shape {
+//   constructor (protected readonly radius: number, color: string) {
+//     super(color)
+//   }
+
+//   render () {
+//     console.log('Rendering a circle')
+//   }
+// }
+
+// class Square extends Shape {
+//   constructor (protected readonly side: number, color: string) {
+//     super(color)
+//   }
+
+//   render () {
+//     console.log('Rendering a square')
+//   }
+// }
+
+// // let shape = new Shape() // It is not possible to create an instance of abstract class
+// let circle = new Circle(5, 'red')
+
+// console.log(circle.render())
+
+// -------------------------------------------------
+// 13. INTERFACES
+// -------------------------------------------------
+
+// abstract class Calender {
+//   constructor(public name: string){}
+
+//   abstract addEvent(): void
+//   abstract removeEvent(): void
+// }
+
+// interface Calender {
+//   name: string
+//   addEvent(): void
+//   removeEvent(): void
+// }
+
+// interface cloudCalender extends Calender {
+//   sync(): void
+// }
+
+// class GoogleCalender implements Calender, cloudCalender {
+//   // (cntrl + .) to automaticaly implement interfaces
+//   constructor (public name: string) {}
+
+//   addEvent (): void {
+//     throw new Error('Method not implemented.')
+//   }
+
+//   removeEvent (): void {
+//     throw new Error('Method not implemented.')
+//   }
+
+//   sync (): void {
+//     throw new Error('Method not implemented.')
+//   }
+
+//   // constructor (public name: string) {}
+
+//   // addEvent () {
+//   //   console.log('Google Calender Add Event Logic')
+//   // }
+
+//   // removeEvent () {
+//   //   console.log('Google Calender Remove Event Logic')
+//   // }
+
+//   // sync () {
+//   //   console.log('Google Calender SyncLogic')
+//   // }
+// }
+
+// -------------------------------------------------
+// 14. GENERICS (GENERIC CLASSES)
+// -------------------------------------------------
+
+// class KeyValuePair<K, V> {
+//   constructor (public key: K, public value: V) {}
+// }
+
+// //let pair = new KeyValuePair<number, string>(1, 'Kedar') // recommended
+// let pair = new KeyValuePair(1, 'Kedar') // not recommended
+
+// -------------------------------------------------
+// 15. GENERIC FUNCTIONS
+// -------------------------------------------------
+
+// class ArrayUtils {
+//   static wrapInArray<T> (value: T): Object {
+//     return [value]
+//   }
+// }
+
+// let numbers = ArrayUtils.wrapInArray(1)
+
+// -------------------------------------------------
+// 16. GENERIC INTERFACES
+// -------------------------------------------------
+
+// interface Result<T> {
+//   data: T | null
+//   error: string | null
+// }
+
+// function fetch<T> (url: string): Result<T> {
+//   return { data: null, error: null }
+// }
+
+// interface User {
+//   userName: string
+// }
+
+// interface Product {
+//   title: string
+// }
+
+// // let result = fetch<User>('url')
+// // result.data?.userName
+
+// let result = fetch<Product>('url')
+// result.data?.title
+
+// -------------------------------------------------
+// 16. GENERIC CONSTRAINTS
+// -------------------------------------------------
+
+// function echo<T extends number | string> (value: T): T {
+//   return value
+// }
+
+// echo(true) // error because only number | string type allowed
+
+// function echo<T extends {name: string}> (value: T): T {
+//   return value
+// }
+
+// echo({name: "Kedar"})
+
+interface Person {
+  name: string
 }
 
-class Student extends Person {
-  constructor (public studentId: number, firstName: string, lastName: string) {
-    super(firstName, lastName)
-  }
-
-  takeTest () {
-    console.log('Taking a test')
-  }
+function echo<T extends Person> (value: T): T {
+  return value
 }
 
-class Teacher extends Person {
-  override get fullName (): string {
-    return 'Professor ' + super.fullName
-  }
+class Student implements Person {
+  constructor (public name: string) {}
 }
 
-class Principal extends Person {
-  override get fullName (): string {
-    return 'Principal ' + super.fullName
-  }
-}
-
-printNames([
-  new Student(1, 'Kedar', 'Babaleshwar'),
-  new Teacher('John', 'Smith'),
-  new Principal('James', 'Bond')
-])
-
-function printNames(people: Person[]) {
-  for(let person of people) {
-    console.log(person.fullName)
-  }
-}
+echo(new Student('Kedar'))

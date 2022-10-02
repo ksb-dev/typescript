@@ -218,45 +218,151 @@
 // -------------------------------------------------
 // 10. POLYMORPHISM
 // -------------------------------------------------
-class Person {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    get fullName() {
-        return this.firstName + ' ' + this.lastName;
-    }
-    walk() {
-        console.log('Walking');
+// class Person {
+//   constructor (public firstName: string, public lastName: string) {}
+//   get fullName (): string {
+//     return this.firstName + ' ' + this.lastName
+//   }
+//   walk () {
+//     console.log('Walking')
+//   }
+// }
+// class Student extends Person {
+//   constructor (public studentId: number, firstName: string, lastName: string) {
+//     super(firstName, lastName)
+//   }
+//   takeTest () {
+//     console.log('Taking a test')
+//   }
+// }
+// class Teacher extends Person {
+//   override get fullName (): string {
+//     return 'Professor ' + super.fullName
+//   }
+// }
+// class Principal extends Person {
+//   override get fullName (): string {
+//     return 'Principal ' + super.fullName
+//   }
+// }
+// printNames([
+//   new Student(1, 'Kedar', 'Babaleshwar'),
+//   new Teacher('John', 'Smith'),
+//   new Principal('James', 'Bond')
+// ])
+// function printNames(people: Person[]) {
+//   for(let person of people) {
+//     console.log(person.fullName)
+//   }
+// }
+// -------------------------------------------------
+// 11. PRIVATE VS PROTECTED
+// -------------------------------------------------
+// class Person {
+//   constructor (public firstName: string, public lastName: string) {}
+//   get fullName (): string {
+//     return this.firstName + ' ' + this.lastName
+//   }
+//   private walk () {
+//     console.log('Walking')
+//   }
+//   protected run () {
+//     console.log('Running')
+//   }
+// }
+// class Student extends Person {
+//   constructor (public studentId: number, firstName: string, lastName: string) {
+//     super(firstName, lastName)
+//   }
+//   takeTest () {
+//     // this.walk() // private members are not inherited
+//     this.run() // protected members can be inherited
+//     console.log('Taking a test')
+//   }
+// }
+// class Teacher extends Person {
+//   override get fullName (): string {
+//     return 'Professor ' + super.fullName
+//   }
+// }
+// class Principal extends Person {
+//   override get fullName (): string {
+//     return 'Principal ' + super.fullName
+//   }
+// }
+// -------------------------------------------------
+// 12. ABSTRACT CLASSES AND METHODS
+// -------------------------------------------------
+// abstract class Shape {
+//   constructor (public color: string) {}
+//   abstract render (): void
+// }
+// class Circle extends Shape {
+//   constructor (protected readonly radius: number, color: string) {
+//     super(color)
+//   }
+//   render () {
+//     console.log('Rendering a circle')
+//   }
+// }
+// class Square extends Shape {
+//   constructor (protected readonly side: number, color: string) {
+//     super(color)
+//   }
+//   render () {
+//     console.log('Rendering a square')
+//   }
+// }
+// // let shape = new Shape() // It is not possible to create an instance of abstract class
+// let circle = new Circle(5, 'red')
+// console.log(circle.render())
+// -------------------------------------------------
+// 13. INTERFACES
+// -------------------------------------------------
+// abstract class Calender {
+//   constructor(public name: string){}
+//   abstract addEvent(): void
+//   abstract removeEvent(): void
+// }
+// interface Calender {
+//   name: string
+//   addEvent(): void
+//   removeEvent(): void
+// }
+// interface cloudCalender extends Calender {
+//   sync(): void
+// }
+// class GoogleCalender implements Calender, cloudCalender {
+//   // (cntrl + .) to automaticaly implement interfaces
+//   constructor (public name: string) {}
+//   addEvent (): void {
+//     throw new Error('Method not implemented.')
+//   }
+//   removeEvent (): void {
+//     throw new Error('Method not implemented.')
+//   }
+//   sync (): void {
+//     throw new Error('Method not implemented.')
+//   }
+//   // constructor (public name: string) {}
+//   // addEvent () {
+//   //   console.log('Google Calender Add Event Logic')
+//   // }
+//   // removeEvent () {
+//   //   console.log('Google Calender Remove Event Logic')
+//   // }
+//   // sync () {
+//   //   console.log('Google Calender SyncLogic')
+//   // }
+// }
+// -------------------------------------------------
+// 14. GENERICS (GENERIC CLASSES)
+// -------------------------------------------------
+class KeyValuePair {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
     }
 }
-class Student extends Person {
-    constructor(studentId, firstName, lastName) {
-        super(firstName, lastName);
-        this.studentId = studentId;
-    }
-    takeTest() {
-        console.log('Taking a test');
-    }
-}
-class Teacher extends Person {
-    get fullName() {
-        return 'Professor ' + super.fullName;
-    }
-}
-class Principal extends Person {
-    get fullName() {
-        return 'Principal ' + super.fullName;
-    }
-}
-printNames([
-    new Student(1, 'Kedar', 'Babaleshwar'),
-    new Teacher('John', 'Smith'),
-    new Principal('James', 'Bond')
-]);
-function printNames(people) {
-    for (let person of people) {
-        console.log(person.fullName);
-    }
-}
+let pair = new KeyValuePair(1, 'Kedar');
 //# sourceMappingURL=index.js.map
